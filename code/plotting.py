@@ -29,7 +29,7 @@ def plot_fig1_subplot(label, metric, number, X, results_zero_c, results_one_c):
 
 
     if (number == 3):
-        ax.set_xlabel('r magnitude', fontsize=19)
+        ax.set_xlabel('Weight of R', fontsize=19)
     ax.set_ylabel('Information bits', fontsize=19)
     ax.xaxis.set_tick_params(labelsize=14)
     ax.yaxis.set_tick_params(labelsize=14)
