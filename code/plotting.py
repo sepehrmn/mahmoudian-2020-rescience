@@ -65,9 +65,10 @@ def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
     ax = plt.subplot(1, 3, number, projection='3d')
     ax.set_xlabel('r', labelpad=15, fontsize=22)
     ax.set_ylabel('c', labelpad=15, fontsize=22)
-    ax.xaxis.set_tick_params(labelsize=14)
-    ax.yaxis.set_tick_params(labelsize=14)
-    ax.set_zlabel('Information bits', labelpad=18, fontsize=18)
+    ax.xaxis.set_tick_params(labelsize=13)
+    ax.yaxis.set_tick_params(labelsize=13)
+    ax.zaxis.set_tick_params(labelsize=13, pad=11)
+    ax.set_zlabel('Information bits', labelpad=25, fontsize=18)
     Z = results[np.where(np.logical_and(results['activation_function'] == function, results['information_metric']
                                          == metric))]['value']
     Z = Z.reshape(n_points, n_points).T
