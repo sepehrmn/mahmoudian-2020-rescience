@@ -45,7 +45,7 @@ data:
 
 # Information about the original article that has been replicated
 replication:
- - cite: Smyth, D., Phillips, W. A. and Kay, J.(1996)'Measures for investigating the contextual modulation of information transmission',Network: Computation in Neural Systems,7:2,307 — 316 # Full textual citation
+ - cite: Smyth, D., Phillips, W. A. and Kay, J.(1996)'Measures for investigating the contextual modulation of information transmission',Network:Computation in Neural Systems,7:2,307 — 316 # Full textual citation
  - bib:  # Bibtex key (if any) in your bibliography file
  - url:  https://www.tandfonline.com/doi/abs/10.1088/0954-898X_7_2_011 # URL to the PDF, try to link to a non-paywall version
  - doi:  10.1088/0954-898X/7/2/011 # Regular digital object identifier
