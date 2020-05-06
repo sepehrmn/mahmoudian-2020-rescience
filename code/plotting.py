@@ -29,15 +29,16 @@ def plot_fig1_subplot(label, metric, number, X, results_zero_c, results_one_c):
 
 
     if (number == 3):
-        ax.set_xlabel('Weight of R', fontsize=19)
-    ax.set_ylabel('Information bits', fontsize=19)
+        ax.set_xlabel('Magnitude of R', fontsize=19)
+    ax.set_ylabel('Information bits', fontsize=18)
     ax.xaxis.set_tick_params(labelsize=14)
     ax.yaxis.set_tick_params(labelsize=14)
     ax.plot(X, Y, color='k', ls='dotted', label="Both")
+    ax.text(-0.045, -0.11, label, transform=ax.transAxes, fontsize=18, fontweight='bold')
 
 def plot_fig1(X, results):
 
-    fig = plt.figure()
+    plt.figure(figsize=(19.2, 10.8))
 
     results_zero_c = results[np.where(np.isclose(results['c'], 0.0))]
     results_one_c = results[np.where(np.isclose(results['c'], 1.0))]
@@ -61,24 +62,26 @@ def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
     n_points = X.shape[0]
 
     # Subplot 1: Additive
-    ax = plt.subplot(3, 1, number, projection='3d')
+    ax = plt.subplot(1, 3, number, projection='3d')
     ax.set_xlabel('r', labelpad=15, fontsize=22)
     ax.set_ylabel('c', labelpad=15, fontsize=22)
     ax.xaxis.set_tick_params(labelsize=14)
     ax.yaxis.set_tick_params(labelsize=14)
-    ax.set_zlabel('Information bits', fontsize=19)
+    ax.set_zlabel('Information bits', labelpad=18, fontsize=18)
     Z = results[np.where(np.logical_and(results['activation_function'] == function, results['information_metric']
                                          == metric))]['value']
     Z = Z.reshape(n_points, n_points).T
-    ax.set_title(label, fontsize=19, fontweight='bold')
+    ax.set_title(label, fontsize=19, fontweight='bold', y=0.89)
     ax.plot_wireframe(X, Y, Z, color="grey")
+    ax.view_init(5, 300)
+    plt.tight_layout()
 
     return
 
 
 def plot_fig2(X, Y, results):
 
-    fig = plt.figure()
+    plt.figure(figsize=(19.2, 10.8))
     #fig.suptitle('I(X;C|R)', fontsize=14, fontweight='bold')
 
     # title, metric, number, X, Y, results, color
@@ -107,12 +110,12 @@ def plot_fig3(X, analytical_results, simulation_results):
                                   Y_all['information_metric'] == b'I_X_R_C'))]['value']
     Y = np.repeat(Y, X.shape[0])
 
-    fig = plt.figure()
+    plt.figure(figsize=(19.2, 10.8))
 
     ax = plt.subplot(3, 1, 1)
     #ax.set_title("I(X;R;C)")
     #ax.set_xlabel('Sample size')
-    ax.set_ylabel('Information bits', fontsize=19)
+    ax.set_ylabel('Information bits', fontsize=18)
     ax.set_ylim(0.0, 1.0)
     ax.plot(X, Y, color='k', ls='dotted') #, label="I(X;R;C)")
     Y = simulation_results['I_X_R_C']
@@ -121,12 +124,12 @@ def plot_fig3(X, analytical_results, simulation_results):
     ax.xaxis.set_tick_params(labelsize=14)
     ax.yaxis.set_tick_params(labelsize=14)
 
-    ax.text(-0.04, -0.11, '(a)', transform=ax.transAxes, fontsize=19, fontweight='bold')
+    ax.text(-0.06, -0.11, '(a)', transform=ax.transAxes, fontsize=18, fontweight='bold')
 
     ax = plt.subplot(3, 1, 2)
     # ax.set_title("I(X;R|C)")
     #ax.set_xlabel('Sample size')
-    ax.set_ylabel('Information bits', fontsize=19)
+    ax.set_ylabel('Information bits', fontsize=18)
 
     # Zero context - dashed
     Y = Y_all[np.where(np.logical_and(Y_all['activation_function'] == b'modulatory',
@@ -137,7 +140,7 @@ def plot_fig3(X, analytical_results, simulation_results):
     Y = simulation_results['I_X_R__C']
     ax.errorbar(X, Y, yerr=simulation_results['sd_I_X_R__C'], color='k', capsize=2)
 
-    ax.text(-0.04, -0.11, '(b)', transform=ax.transAxes, fontsize=19, fontweight='bold')
+    ax.text(-0.06, -0.11, '(b)', transform=ax.transAxes, fontsize=18, fontweight='bold')
 
     ax.xaxis.set_tick_params(labelsize=14)
     ax.yaxis.set_tick_params(labelsize=14)
@@ -146,7 +149,7 @@ def plot_fig3(X, analytical_results, simulation_results):
     ax = plt.subplot(3, 1, 3)
     # ax.set_title("I(X;C|R)")
     ax.set_xlabel('Sample size', fontsize=19)
-    ax.set_ylabel('Information bits', fontsize=19)
+    ax.set_ylabel('Information bits', fontsize=18)
 
     Y = Y_all[np.where(np.logical_and(Y_all['activation_function'] == b'modulatory',
                                       Y_all['information_metric'] == b'I_X_C__R'))]['value']
@@ -154,7 +157,7 @@ def plot_fig3(X, analytical_results, simulation_results):
     ax.plot(X, Y, color='k', ls='dotted', label="I(X;C|R)")
     Y = simulation_results['I_X_C__R']
     ax.errorbar(X, Y, yerr=simulation_results['sd_I_X_C__R'], color='k', capsize=2)
-    ax.text(-0.04, -0.11, '(c)', transform=ax.transAxes, fontsize=19, fontweight='bold')
+    ax.text(-0.06, -0.11, '(c)', transform=ax.transAxes, fontsize=18, fontweight='bold')
     ax.xaxis.set_tick_params(labelsize=14)
     ax.yaxis.set_tick_params(labelsize=14)
     ax.set_ylim(0.0, 0.3)
