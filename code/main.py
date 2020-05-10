@@ -187,7 +187,7 @@ if __name__ == '__main__':
     plotting.plot_fig2(params.r_magnitudes, params.c_magnitudes, analytical_results)
 
     # FIGURE 3
-    samples_array = np.arange(40, 1040, 40)
+    samples_array = np.arange(50, 1050, 50)
 
     simulation_results = {'I_X_R__C': np.zeros(samples_array.shape[0]),
                             'I_X_C__R': np.zeros(samples_array.shape[0]),
