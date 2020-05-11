@@ -1,7 +1,7 @@
 # mahmoudian-2020-rescience
 Sepehr Mahmoudian's reproduction of Smyth, Phillips, Kay 1996
 
-This repository contains a successful replication of the smyth paper. It's simple to run the code:
+This repository contains a successful replication of the Smyth paper for the ReScience C journal. It's simple to run the code:
 ```
 python main.py
 ```
