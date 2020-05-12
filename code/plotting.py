@@ -117,7 +117,7 @@ def plot_fig3(X, analytical_results, simulation_results):
     #ax.set_title("I(X;R;C)")
     #ax.set_xlabel('Sample size')
     ax.set_ylabel('Information bits', fontsize=18)
-    ax.set_ylim(0.0, 1.0)
+    ax.set_ylim(0.0, 0.9)
     ax.plot(X, Y, color='k', ls='dotted') #, label="I(X;R;C)")
     Y = simulation_results['I_X_R_C']
     ax.errorbar(X, Y, yerr=simulation_results['sd_I_X_R_C'], color='k', capsize=2)
@@ -161,7 +161,7 @@ def plot_fig3(X, analytical_results, simulation_results):
     ax.text(-0.06, -0.11, '(c)', transform=ax.transAxes, fontsize=18, fontweight='bold')
     ax.xaxis.set_tick_params(labelsize=14)
     ax.yaxis.set_tick_params(labelsize=14)
-    ax.set_ylim(0.0, 0.3)
+    ax.set_ylim(-0.1, 0.3)
 
     plt.subplots_adjust(wspace=None, hspace=0.2)
     plt.show()
