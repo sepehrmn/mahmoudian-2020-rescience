@@ -1,7 +1,5 @@
 import numpy as np
-import math
 import matplotlib.pyplot as plt
-from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
 
 def plot_fig1_subplot(label, metric, number, X, results_zero_c, results_one_c):
