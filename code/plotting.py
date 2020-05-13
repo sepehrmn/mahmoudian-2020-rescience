@@ -83,15 +83,9 @@ def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
 def plot_fig2(X, Y, results):
 
     plt.figure(figsize=(19.2, 10.8))
-    #fig.suptitle('I(X;C|R)', fontsize=14, fontweight='bold')
 
-    # title, metric, number, X, Y, results, color
     _plot_fig2_subplot("(a)", b'I_X_C__R', 1, b'additive', X, Y, results)
-
-    # title, metric, number, X, Y, results, color
     _plot_fig2_subplot("(b)", b'I_X_C__R', 2, b'modulatory', X, Y, results)
-
-    # title, metric, number, X, Y, results, color
     _plot_fig2_subplot("(c)", b'I_X_C__R', 3, b'both', X, Y, results)
 
     plt.subplots_adjust(wspace=None, hspace=0.2)
@@ -101,12 +95,12 @@ def plot_fig2(X, Y, results):
 
 def plot_fig3(X, analytical_results, simulation_results):
 
-    # There is only one result for the analytical analysis as the trial size does not apply to it.
-    # remove magnitude as well as 0 context as well as  other functions as well as other metrics
+    # For figure 3, only the case where r == 2 and c == 2 is relevant. So first only
+    # those results are selected.
     Y_all = analytical_results[np.logical_and(np.isclose(analytical_results['c'], 2.0),
                                               np.isclose(analytical_results['r'], 2.0))]
 
-    # I(X;R|C)
+    # For the first subplot, the I(X,R,C) for the modulatory activation function is needed.
     Y = Y_all[np.where(np.logical_and(Y_all['activation_function'] == b'modulatory',
                                   Y_all['information_metric'] == b'I_X_R_C'))]['value']
     Y = np.repeat(Y, X.shape[0])
@@ -114,11 +108,9 @@ def plot_fig3(X, analytical_results, simulation_results):
     plt.figure(figsize=(19.2, 10.8))
 
     ax = plt.subplot(3, 1, 1)
-    #ax.set_title("I(X;R;C)")
-    #ax.set_xlabel('Sample size')
     ax.set_ylabel('Information bits', fontsize=18)
     ax.set_ylim(0.0, 0.9)
-    ax.plot(X, Y, color='k', ls='dotted') #, label="I(X;R;C)")
+    ax.plot(X, Y, color='k', ls='dotted')
     Y = simulation_results['I_X_R_C']
     ax.errorbar(X, Y, yerr=simulation_results['sd_I_X_R_C'], color='k', capsize=2)
 
@@ -128,11 +120,9 @@ def plot_fig3(X, analytical_results, simulation_results):
     ax.text(-0.06, -0.11, '(a)', transform=ax.transAxes, fontsize=18, fontweight='bold')
 
     ax = plt.subplot(3, 1, 2)
-    # ax.set_title("I(X;R|C)")
-    #ax.set_xlabel('Sample size')
     ax.set_ylabel('Information bits', fontsize=18)
 
-    # Zero context - dashed
+    # For the second subplot, the I(X,R|C) for the modulatory activation function is needed.
     Y = Y_all[np.where(np.logical_and(Y_all['activation_function'] == b'modulatory',
                                                    Y_all['information_metric'] == b'I_X_R__C'))]['value']
     Y = np.repeat(Y, X.shape[0])
@@ -152,6 +142,7 @@ def plot_fig3(X, analytical_results, simulation_results):
     ax.set_xlabel('Sample size', fontsize=19)
     ax.set_ylabel('Information bits', fontsize=18)
 
+    # For the third subplot, the I(X,C|R) for the modulatory activation function is needed.
     Y = Y_all[np.where(np.logical_and(Y_all['activation_function'] == b'modulatory',
                                       Y_all['information_metric'] == b'I_X_C__R'))]['value']
     Y = np.repeat(Y, X.shape[0])
