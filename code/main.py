@@ -1,5 +1,4 @@
 import itertools
-import math
 import numpy as np
 from scipy.special import expit
 import params
@@ -128,7 +127,7 @@ if __name__ == '__main__':
         for r, val_rspike in spiking_r.items():
             for c, val_cspike in spiking_c.items():
 
-                vals_both = 0.5 * val_rspike * (1 + math.exp(val_rspike * val_cspike)) + val_cspike
+                vals_both = 0.5 * val_rspike * (1 + np.exp(val_rspike * val_cspike)) + val_cspike
                 both_firing = expit(vals_both)
                 both_silent = 1 - both_firing
                 both_X__R_C[(1, r, c)] = both_firing
