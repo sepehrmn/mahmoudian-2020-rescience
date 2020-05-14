@@ -53,13 +53,12 @@ def plot_fig1(X, results):
     plt.subplots_adjust(wspace=None, hspace=0.2)
     plt.show()
 
-# FIG 2
+
 def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
 
     X, Y = np.meshgrid(X, Y)
     n_points = X.shape[0]
 
-    # Subplot 1: Additive
     ax = plt.subplot(1, 3, number, projection='3d')
     ax.set_xlabel('r', labelpad=15, fontsize=22)
     ax.set_ylabel('c', labelpad=15, fontsize=22)
@@ -98,52 +97,43 @@ def plot_fig3(X, analytical_results, simulation_results):
     Y_all = analytical_results[np.logical_and(np.isclose(analytical_results['c'], 2.0),
                                               np.isclose(analytical_results['r'], 2.0))]
 
+    plt.figure(figsize=(19.2, 10.8))
+
+    ax = plt.subplot(3, 1, 1)
     # For the first subplot, the I(X,R,C) for the modulatory activation function is needed.
     Y = Y_all[np.where(np.logical_and(Y_all['activation_function'] == b'modulatory',
                                   Y_all['information_metric'] == b'I_X_R_C'))]['value']
     Y = np.repeat(Y, X.shape[0])
-
-    plt.figure(figsize=(19.2, 10.8))
-
-    ax = plt.subplot(3, 1, 1)
     ax.set_ylabel('Information bits', fontsize=18)
     ax.set_ylim(0.0, 0.9)
     ax.plot(X, Y, color='k', ls='dotted')
     Y = simulation_results['I_X_R_C']
     ax.errorbar(X, Y, yerr=simulation_results['sd_I_X_R_C'], color='k', capsize=2)
-
     ax.xaxis.set_tick_params(labelsize=14)
     ax.yaxis.set_tick_params(labelsize=14)
-
     ax.text(-0.06, -0.11, '(a)', transform=ax.transAxes, fontsize=18, fontweight='bold')
 
     ax = plt.subplot(3, 1, 2)
-    ax.set_ylabel('Information bits', fontsize=18)
-
     # For the second subplot, the I(X,R|C) for the modulatory activation function is needed.
     Y = Y_all[np.where(np.logical_and(Y_all['activation_function'] == b'modulatory',
                                                    Y_all['information_metric'] == b'I_X_R__C'))]['value']
     Y = np.repeat(Y, X.shape[0])
+    ax.set_ylabel('Information bits', fontsize=18)
     ax.set_ylim(0.0, 0.5)
     ax.plot(X, Y, color='k', ls='dotted')
     Y = simulation_results['I_X_R__C']
     ax.errorbar(X, Y, yerr=simulation_results['sd_I_X_R__C'], color='k', capsize=2)
-
     ax.text(-0.06, -0.11, '(b)', transform=ax.transAxes, fontsize=18, fontweight='bold')
-
     ax.xaxis.set_tick_params(labelsize=14)
     ax.yaxis.set_tick_params(labelsize=14)
 
-    # I(X;C|R)
     ax = plt.subplot(3, 1, 3)
-    # ax.set_title("I(X;C|R)")
-    ax.set_xlabel('Sample size', fontsize=19)
-    ax.set_ylabel('Information bits', fontsize=18)
-
     # For the third subplot, the I(X,C|R) for the modulatory activation function is needed.
     Y = Y_all[np.where(np.logical_and(Y_all['activation_function'] == b'modulatory',
                                       Y_all['information_metric'] == b'I_X_C__R'))]['value']
     Y = np.repeat(Y, X.shape[0])
+    ax.set_xlabel('Sample size', fontsize=19)
+    ax.set_ylabel('Information bits', fontsize=18)
     ax.plot(X, Y, color='k', ls='dotted', label="I(X;C|R)")
     Y = simulation_results['I_X_C__R']
     ax.errorbar(X, Y, yerr=simulation_results['sd_I_X_C__R'], color='k', capsize=2)
