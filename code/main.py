@@ -146,7 +146,7 @@ if __name__ == '__main__':
 
         # Generating probability distributions
 
-        # P(x,r,c)
+        # P(x|r,c)
         functions_X__R_C = {'additive': additive_X__R_C,
                             'modulatory': modulatory_X__R_C,
                             'both': both_X__R_C,
