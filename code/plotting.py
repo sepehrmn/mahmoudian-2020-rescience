@@ -59,19 +59,19 @@ def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
     X, Y = np.meshgrid(X, Y)
     n_points = X.shape[0]
 
-    ax = plt.subplot(1, 3, number, projection='3d')
+    ax = plt.subplot(3, 1, number, projection='3d')
     ax.set_xlabel('r', labelpad=15, fontsize=22)
     ax.set_ylabel('c', labelpad=15, fontsize=22)
-    ax.xaxis.set_tick_params(labelsize=13)
-    ax.yaxis.set_tick_params(labelsize=13)
-    ax.zaxis.set_tick_params(labelsize=13, pad=11)
-    ax.set_zlabel('Information bits', labelpad=25, fontsize=18)
+    ax.xaxis.set_tick_params(labelsize=11)
+    ax.yaxis.set_tick_params(labelsize=11)
+    ax.zaxis.set_tick_params(labelsize=11, pad=6)
+    ax.set_zlabel('Information bits', labelpad=15, fontsize=18)
     Z = results[np.where(np.logical_and(results['activation_function'] == function, results['information_metric']
                                          == metric))]['value']
     Z = Z.reshape(n_points, n_points).T
-    ax.set_title(label, fontsize=19, fontweight='bold', y=0.89)
+    ax.set_title(label, fontsize=19, fontweight='bold', y=0.1, x=0.1)
     ax.plot_wireframe(X, Y, Z, color="grey")
-    ax.view_init(5, 300)
+    ax.view_init(45, 300)
     plt.tight_layout()
 
     return
@@ -79,7 +79,7 @@ def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
 
 def plot_fig2(X, Y, results):
 
-    plt.figure(figsize=(19.2, 10.8))
+    plt.figure(figsize=(9, 10.8))
 
     _plot_fig2_subplot("(a)", b'I_X_C__R', 1, b'additive', X, Y, results)
     _plot_fig2_subplot("(b)", b'I_X_C__R', 2, b'modulatory', X, Y, results)
