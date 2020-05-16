@@ -74,8 +74,8 @@ if __name__ == '__main__':
     # number of results
     n_results = params.r_magnitudes.shape[0] * params.c_magnitudes.shape[0] * params.n_metrics * params.n_functions
     # It is OK to for convenience, put everything in one big structured array
-    analytical_results = np.zeros(n_results, dtype=[('activation_function', 'S40'),
-                                         ('information_metric', 'S40'),
+    analytical_results = np.zeros(n_results, dtype=[('activation_function', 'O'),
+                                         ('information_metric', 'O'),
                                          ('r', np.float),
                                          ('c', np.float),
                                          ('value', np.float)])
