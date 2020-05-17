@@ -36,7 +36,7 @@ def plot_fig1_subplot(label, metric, number, X, results_zero_c, results_one_c):
 
 def plot_fig1(X, results):
 
-    plt.figure(figsize=(19.2, 10.8))
+    plt.figure(figsize=(13.2, 10.8))
 
     results_zero_c = results[np.where(np.isclose(results['c'], 0.0))]
     results_one_c = results[np.where(np.isclose(results['c'], 1.0))]

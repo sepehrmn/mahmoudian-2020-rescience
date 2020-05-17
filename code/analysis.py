@@ -3,7 +3,17 @@ import math
 import itertools
 
 def cal_mis(R, C, X, X__R, X__C, X__R_C, RCX):
+    """Calculates the three-way mutual and conditional mutual information terms based on probability distributions.
 
+    :param R: dictionary - P(R)
+    :param C: dictionary - P(C)
+    :param X: dictionary - P(X)
+    :param X__R: dictionary - P(X|R)
+    :param X__C: dictionary - P(X|C)
+    :param X__R_C: dictionary - P(X|R,C)
+    :param RCX: dictionary - P(R,C,X)
+    :return: returns a dictionary containing values for 'I_X_R__C', 'I_X_C__R', 'I_X_R_C'.
+    """
     I_X_R__C = 0.0
     I_X_C__R = 0.0
     I_X_R_C = 0.0
@@ -34,7 +44,17 @@ def cal_mis(R, C, X, X__R, X__C, X__R_C, RCX):
 
 def cal_fun_met(R, C, functions_X, functions_X__R, functions_X__C,
                       functions_X__R_C, functions_RCX):
+    """For each activation function, call cal_mis().
 
+    :param R: dictionary - P(R)
+    :param C: dictionary - P(C)
+    :param functions_X: dictionary - P(X) for each activation function
+    :param functions_X__R: dictionary - P(X|R) for each activation function
+    :param functions_X__C: dictionary - P(X|C) for each activation function
+    :param functions_X__R_C: dictionary - P(X|R,C) for each activation function
+    :param functions_RCX: dictionary - P(R,C,X) for each activation function
+    :return: a dictionary containing 'I_X_R__C', 'I_X_C__R', 'I_X_R_C' for each activation function.
+    """
     functions = list(functions_RCX.keys())
     results = {}
 

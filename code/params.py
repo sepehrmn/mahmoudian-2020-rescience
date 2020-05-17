@@ -1,4 +1,3 @@
-
 import numpy as np
 
 c__r = 0.889972
