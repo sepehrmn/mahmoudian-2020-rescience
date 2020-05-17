@@ -115,7 +115,6 @@ if __name__ == '__main__':
         for r, val_rspike in spiking_r.items():
             for c, val_cspike in spiking_c.items():
 
-                #vals_modulatory = np.zeros(1,dtype=np.float128)
                 vals_modulatory = 0.5 * val_rspike * (1 + np.exp(val_rspike * val_cspike))
                 modulatory_firing = expit(vals_modulatory)
                 modulatory_silent = 1 - modulatory_firing
