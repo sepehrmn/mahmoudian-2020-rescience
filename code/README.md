@@ -28,4 +28,4 @@ The three figures will be displayed in a sequence.
 ---
 
 
-The fastest way to test your activation function would be to replace one of the three activation functions in main.py. Probably that would be the 4th activation function (no context) and then renaming it in functions_X__R_C dictionary. To have all 4 and your activation function, first adjust the n_functions in params.py then put it in the main loop where result of the activation functions are calculated and finally add it to the functions_X__R_C dictionary.
+The fastest way to test your activation function would be to replace one of the four activation functions in main.py. Probably that would be the 4th activation function (no context) and then renaming it in functions_X__R_C dictionary. To have all four and your activation function, first adjust the n_functions in params.py then put it in the main loop where result of the activation functions are calculated and finally add it to the functions_X__R_C dictionary.
