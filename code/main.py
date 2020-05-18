@@ -32,16 +32,6 @@ def cal_C__R(R, C, RC):
             C__R[(c, r)] = RC[(r, c)] / R[r]
     return C__R
 
-
-# P(R,C,X)
-def cal_RCX(R, C, X, RC, X__R_C):
-
-    RCX = {}
-    for x, c, r in itertools.product(X, C, R):
-        RCX[(r, c, x)] = RC[(r, c)] * X__R_C[(x, r, c)]
-    return RCX
-
-
 # P(X|R)
 def cal_X__R(R, X, RCX):
     XR = {}
@@ -69,6 +59,9 @@ def cal_X__C(C, X, RCX):
 
 
 if __name__ == '__main__':
+
+    # Setting the seed.
+    np.random.seed(77)
 
     # number of results
     n_results = params.r_magnitudes.shape[0] * params.c_magnitudes.shape[0] * params.n_metrics * params.n_functions
@@ -160,7 +153,10 @@ if __name__ == '__main__':
         for function, X__R_C in functions_X__R_C.items():
 
             # P(R,C,X)
-            RCX = cal_RCX(R, C, X, RC, X__R_C)
+            X = {0: 0, 1: 0}
+            RCX = {}
+            for x, c, r in itertools.product(X, C, R):
+                RCX[(r, c, x)] = RC[(r, c)] * X__R_C[(x, r, c)]
             functions_RCX[function] = RCX
 
             # P(X)
