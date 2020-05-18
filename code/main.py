@@ -242,7 +242,6 @@ if __name__ == '__main__':
             C = {0: np.where(c_seq == -1)[0].shape[0]/n,
                  1: np.where(c_seq == 1)[0].shape[0]/n}
 
-            X = {0: 0, 1: 0}
             RCX = {}
             for r, c in itertools.product(R, C):
 
