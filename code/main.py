@@ -73,13 +73,14 @@ if __name__ == '__main__':
 
     # number of results
     n_results = params.r_magnitudes.shape[0] * params.c_magnitudes.shape[0] * params.n_metrics * params.n_functions
-    # It is OK to for convenience, put everything in one big structured array
+    # It is OK to for convenience put everything in one big structured array
     analytical_results = np.zeros(n_results, dtype=[('activation_function', 'O'),
                                          ('information_metric', 'O'),
                                          ('r', np.float),
                                          ('c', np.float),
                                          ('value', np.float)])
 
+    # Creating the input probability distributions based on equations 1-4 in the replication.
     r_c = 0.5 * params.c__r
     r_notc = 0.5 * (1 - params.c__r)
     notr_c = 0.5 * (1 - params.c__r)
@@ -92,7 +93,8 @@ if __name__ == '__main__':
     R__C = cal_R__C(R, C, RC)
     C__R = cal_C__R(R, C, RC)
 
-    # looping over r and c magnitudes:
+    # looping over r and c magnitudes and calculating the result of each activation function in equations 5-7 of
+    # the replication. The result of each activation function is passed into the sigmoidal in equation 8.
     idx = 0
     for rmag, cmag in itertools.product(params.r_magnitudes, params.c_magnitudes):
 
