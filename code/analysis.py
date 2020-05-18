@@ -26,18 +26,18 @@ def cal_mis(R, C, X, X__R, X__C, X__R_C, RCX):
         val_x__r = X__R[(x, r)] + np.finfo(float).eps
         val_x = X[x] + np.finfo(float).eps
 
-        # I(X;R|C)
-        I_X_R__C += val_rcx * math.log(val_x__r_c / val_x__c, 2)
-
-        # I(X;C|R)
-        I_X_C__R += val_rcx * math.log(val_x__r_c / val_x__r, 2)
-
-        # I(X;R;C)
+        # I(X;R;C) - corresponds to equation 9 in the replication
         I_X_R_C += val_rcx * math.log((val_x__r * val_x__c) / (val_x * val_x__r_c), 2)
 
-    results = {'I_X_R__C': I_X_R__C,
-               'I_X_C__R': I_X_C__R,
-               'I_X_R_C': I_X_R_C}
+        # I(X;R|C) - corresponds to equation 10 in the replication
+        I_X_R__C += val_rcx * math.log(val_x__r_c / val_x__c, 2)
+
+        # I(X;C|R) - corresponds to equation 11 in the replication
+        I_X_C__R += val_rcx * math.log(val_x__r_c / val_x__r, 2)
+
+    results = {'I_X_R_C': I_X_R_C,
+               'I_X_R__C': I_X_R__C,
+               'I_X_C__R': I_X_C__R}
 
     return results
 
