@@ -44,7 +44,7 @@ def cal_mis(R, C, X, X__R, X__C, X__R_C, RCX):
 
 def cal_fun_met(R, C, functions_X, functions_X__R, functions_X__C,
                       functions_X__R_C, functions_RCX):
-    """For each activation function, call cal_mis().
+    """For each activation function, call 'cal_mis'.
 
     :param R: dictionary - P(R)
     :param C: dictionary - P(C)

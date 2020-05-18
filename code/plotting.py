@@ -2,8 +2,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-def plot_fig1_subplot(label, metric, number, X, results_zero_c, results_one_c):
+def _plot_fig1_subplot(label, metric, number, X, results_zero_c, results_one_c):
+    """Plot a subplot for figure 1.
 
+    :param label: string - label of subplot
+    :param metric: string - information theoretic metric
+    :param number: int - number of the subplot
+    :param X: array - magnitude of R for the x axis
+    :param results_zero_c: structured array - contains results of the analysis for when c == 0
+    :param results_one_c: structured array - contains results of the analysis for when c == 1
+    :return:
+    """
     ax = plt.subplot(3, 1, number)
 
     # Zero context - dashed
@@ -25,7 +34,6 @@ def plot_fig1_subplot(label, metric, number, X, results_zero_c, results_one_c):
     Y = results_one_c[np.where(np.logical_and(results_one_c['activation_function'] == 'both',
                                               results_one_c['information_metric'] == metric))]['value']
 
-
     if (number == 3):
         ax.set_xlabel('Magnitude of R', fontsize=19)
     ax.set_ylabel('Information bits', fontsize=18)
@@ -34,28 +42,47 @@ def plot_fig1_subplot(label, metric, number, X, results_zero_c, results_one_c):
     ax.plot(X, Y, color='k', ls='dotted', label="Both")
     ax.text(-0.045, -0.11, label, transform=ax.transAxes, fontsize=18, fontweight='bold')
 
-def plot_fig1(X, results):
+    return
 
+def plot_fig1(X, results):
+    """Plot figure 1. Calls "_plot_fig1_subplot" for each subplot.
+
+    :param X: array - magnitude of R for the x axis
+    :param results: structured array - contains results of the analysis
+    :return: None
+    """
     plt.figure(figsize=(13.2, 10.8))
 
     results_zero_c = results[np.where(np.isclose(results['c'], 0.0))]
     results_one_c = results[np.where(np.isclose(results['c'], 1.0))]
 
     # I(X;R;C)
-    plot_fig1_subplot('(a)', 'I_X_R_C', 1, X, results_zero_c, results_one_c)
+    _plot_fig1_subplot('(a)', 'I_X_R_C', 1, X, results_zero_c, results_one_c)
 
     # I(X;R|C)
-    plot_fig1_subplot('(b)',  'I_X_R__C', 2, X, results_zero_c, results_one_c)
+    _plot_fig1_subplot('(b)',  'I_X_R__C', 2, X, results_zero_c, results_one_c)
 
     # I(X;C|R)
-    plot_fig1_subplot('(c)',  'I_X_C__R', 3, X, results_zero_c, results_one_c)
+    _plot_fig1_subplot('(c)',  'I_X_C__R', 3, X, results_zero_c, results_one_c)
 
     plt.subplots_adjust(wspace=None, hspace=0.2)
     plt.show()
 
+    return
+
 
 def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
+    """Plot a subplot for figure 2.
 
+    :param label: string - label of the subplot
+    :param metric: string - information metric
+    :param number: int - number of the subplot
+    :param function: string - activation function
+    :param X: array - the x axis
+    :param Y: array - the y axis
+    :param results: structured array - results of the analysis
+    :return: None
+    """
     X, Y = np.meshgrid(X, Y)
     n_points = X.shape[0]
 
@@ -78,7 +105,13 @@ def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
 
 
 def plot_fig2(X, Y, results):
+    """Plot figure 2. Calls "_plot_fig2_subplot"
 
+    :param X: array - x axis (r values)
+    :param Y: array - y axis (c values)
+    :param results: structured array - results of the analysis
+    :return: None
+    """
     plt.figure(figsize=(9, 10.8))
 
     _plot_fig2_subplot("(a)", 'I_X_C__R', 1, 'additive', X, Y, results)
@@ -91,7 +124,13 @@ def plot_fig2(X, Y, results):
     return
 
 def plot_fig3(X, analytical_results, simulation_results):
+    """Plot figure 3.
 
+    :param X: array - the x axis of sample sizes
+    :param analytical_results: structured array - analytical results
+    :param simulation_results: structured array - simulation results
+    :return: None
+    """
     # For figure 3, only the case where r == 2 and c == 2 is relevant. So first only
     # those results are selected.
     Y_all = analytical_results[np.logical_and(np.isclose(analytical_results['c'], 2.0),
