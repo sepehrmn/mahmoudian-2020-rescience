@@ -39,7 +39,6 @@ def cal_RCX(R, C, X, RC, X__R_C):
     RCX = {}
     for x, c, r in itertools.product(X, C, R):
         RCX[(r, c, x)] = RC[(r, c)] * X__R_C[(x, r, c)]
-    functions_RCX[function] = RCX #TODO why set this here
     return RCX
 
 
@@ -153,25 +152,25 @@ if __name__ == '__main__':
                             'both': both_X__R_C,
                             'nocontext': nocontext_X__R_C}
 
+        functions_RCX = {} # P(R,C,X)
         functions_X = {}  # P(X)
         functions_X__R = {}  # P(X|R)
         functions_X__C = {}  # P(X|C)
 
-        functions_RCX = {}
         for function, X__R_C in functions_X__R_C.items():
 
-            X = {0: 0, 1: 0}
-
-            # P(r,c,x)
+            # P(R,C,X)
             RCX = cal_RCX(R, C, X, RC, X__R_C)
+            functions_RCX[function] = RCX
 
-            # P(x)
+            # P(X)
+            X = cal_X(R, C, RCX)
             functions_X[function] = cal_X(R, C, RCX)
 
-            # P(x|r)
+            # P(X|R)
             functions_X__R[function] = cal_X__R(R, X, RCX)
 
-            # P(x|c)
+            # P(X|C)
             functions_X__C[function] = cal_X__C(C, X, RCX)
 
         # Calculating information theoretic metrics
@@ -186,7 +185,8 @@ if __name__ == '__main__':
     plotting.plot_fig1(params.r_magnitudes, analytical_results)
     plotting.plot_fig2(params.r_magnitudes, params.c_magnitudes, analytical_results)
 
-    # FIGURE 3
+    # ******************************
+    # ********* FIGURE 3 ***********
     samples_array = np.arange(50, 1050, 50)
 
     simulation_results = {'I_X_R__C': np.zeros(samples_array.shape[0]),
