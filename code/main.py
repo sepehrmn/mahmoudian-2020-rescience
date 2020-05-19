@@ -20,7 +20,7 @@ def cal_R__C(R, C, RC):
 
     R__C = {}
     for c, r in itertools.product(C, R):
-        R__C[(r, c)] = RC[(r, c)] / C[c]
+        R__C[(r, c)] = RC[(r, c)] / (C[c] + np.finfo(float).eps)
     return R__C
 
 
@@ -29,7 +29,7 @@ def cal_C__R(R, C, RC):
 
     C__R = {}
     for r, c in itertools.product(R, C):
-            C__R[(c, r)] = RC[(r, c)] / R[r]
+            C__R[(c, r)] = RC[(r, c)] / (R[r] + np.finfo(float).eps)
     return C__R
 
 # P(X|R)
@@ -40,7 +40,7 @@ def cal_X__R(R, X, RCX):
 
     X__R = {}
     for x, r in itertools.product(X, R):
-        X__R[(x, r)] = XR[(x, r)] / R[(r)]
+        X__R[(x, r)] = XR[(x, r)] / (R[(r)] + np.finfo(float).eps)
 
     return X__R
 
@@ -53,7 +53,7 @@ def cal_X__C(C, X, RCX):
 
     X__C = {}
     for x, c in itertools.product(X, C):
-        X__C[(x, c)] = XC[(x, c)] / C[c]
+        X__C[(x, c)] = XC[(x, c)] / (C[c] + np.finfo(float).eps)
 
     return X__C
 
