@@ -179,7 +179,7 @@ if __name__ == '__main__':
                idx += 1
 
     plotting.plot_fig1(params.r_magnitudes, analytical_results)
-    plotting.plot_fig2(params.r_magnitudes, params.c_magnitudes, analytical_results)
+    plotting.plot_fig2(analytical_results)
 
     # ******************************
     # ********* FIGURE 3 ***********

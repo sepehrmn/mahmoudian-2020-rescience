@@ -71,21 +71,16 @@ def plot_fig1(X, results):
     return
 
 
-def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
+def _plot_fig2_subplot(label, metric, number, function, results):
     """Plot a subplot for figure 2.
 
     :param label: string - label of the subplot
     :param metric: string - information metric
     :param number: int - number of the subplot
     :param function: string - activation function
-    :param X: array - the x axis
-    :param Y: array - the y axis
     :param results: structured array - results of the analysis
     :return: None
     """
-    X, Y = np.meshgrid(X, Y)
-    n_points = X.shape[0]
-
     ax = plt.subplot(3, 1, number, projection='3d')
     ax.set_xlabel('r', labelpad=15, fontsize=22)
     ax.set_ylabel('c', labelpad=15, fontsize=22)
@@ -93,9 +88,14 @@ def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
     ax.yaxis.set_tick_params(labelsize=11)
     ax.zaxis.set_tick_params(labelsize=11, pad=6)
     ax.set_zlabel('Information bits', labelpad=15, fontsize=18)
-    Z = results[np.where(np.logical_and(results['activation_function'] == function, results['information_metric']
-                                         == metric))]['value']
-    Z = Z.reshape(n_points, n_points).T
+    matches = results[np.where(np.logical_and( results['information_metric']
+                                         == metric, results['activation_function'] == function))]
+    X = matches['r'].reshape(101, 101)
+    Y = matches['c'].reshape(101, 101)
+    Z = matches['value'].reshape(101, 101)
+
+    #Z = Z.reshape(X.shape[0], Y.shape[0])
+    #X, Y = np.meshgrid(X, Y)
     ax.set_title(label, fontsize=19, fontweight='bold', y=0.1, x=0.1)
     ax.plot_wireframe(X, Y, Z, color="grey")
     ax.view_init(45, 300)
@@ -104,7 +104,7 @@ def _plot_fig2_subplot(label, metric, number, function, X, Y, results):
     return
 
 
-def plot_fig2(X, Y, results):
+def plot_fig2(results):
     """Plot figure 2. Calls "_plot_fig2_subplot"
 
     :param X: array - x axis (r values)
@@ -114,9 +114,9 @@ def plot_fig2(X, Y, results):
     """
     plt.figure(figsize=(9, 10.8))
 
-    _plot_fig2_subplot("(a)", 'I_X_C__R', 1, 'additive', X, Y, results)
-    _plot_fig2_subplot("(b)", 'I_X_C__R', 2, 'modulatory', X, Y, results)
-    _plot_fig2_subplot("(c)", 'I_X_C__R', 3, 'both', X, Y, results)
+    _plot_fig2_subplot("(a)", 'I_X_C__R', 1, 'additive', results)
+    _plot_fig2_subplot("(b)", 'I_X_C__R', 2, 'modulatory', results)
+    _plot_fig2_subplot("(c)", 'I_X_C__R', 3, 'both', results)
 
     plt.subplots_adjust(wspace=None, hspace=0.2)
     plt.show()
