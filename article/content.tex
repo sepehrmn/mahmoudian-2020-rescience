@@ -8,7 +8,7 @@ Systems such as neurons can have different types of input. The authors\supercite
 This work was published in 1996, but with the advances in computing and information theory, and increased emphasis on the importance of context\supercite{Larkum:2013}, new studies\supercite{Kay:2011,Wibral:2017} have started building on its foundations. Furthermore, there are many ways to write the activation functions and only a few simple formulations were analyzed. Therefore, the significance of this work is twofold: 1. To replicate the study in a modern programming language and make it publicly accessible.   2. Enable new activation functions to be readily tested.
 
 \subsubsection{Replication}
-A successful attempt is made to qualitatively and quantitatively replicate the results of the original paper by replicating the three figures that comprise the results. While in all cases the results are qualitatively identical, there are minor quantitative differences in some figures which could in some cases be attributed to the use of a different seed value or the differences between how small or very large values are handled in this python implementation and the original authors' implementation in an old programming environment about three decades ago. 
+A successful attempt is made to qualitatively and quantitatively replicate the results of the original paper by replicating the three figures that comprise the results. While in all cases the results are qualitatively identical, there are minor quantitative differences in some figures which could in some cases be attributed to the use of a different seed value or the differences between how small or large values are handled in this python implementation and the original authors' implementation in an old programming environment about three decades ago. 
 
 \section{Methods}
 
@@ -92,7 +92,7 @@ Figure 1 shows the three-way mutual information and conditional mutual informati
 
 \subsubsection{Information surface plots for different input weights}
 
-Figure 2 shows the I(X;C|R) for each of the activation functions and across a range of r and c input weights. These results are produced in a similar way to the paper by using the exact probability distributions. They are qualitatively identical to the original paper. There are no notable quantitative differences and the values look very similar. The error for small sample sizes is higher in the original paper, this can be attributed to use of a different seed value and their programming language.
+Figure 2 shows the I(X;C|R) for each of the activation functions and across a range of r and c input weights. These results are produced in a similar way to the paper by using the exact probability distributions. They are qualitatively identical to the original paper. There are no notable quantitative differences and the values look very similar. 
 
 
 \begin{figure}[H]
@@ -104,7 +104,7 @@ Figure 2 shows the I(X;C|R) for each of the activation functions and across a ra
 
 \subsubsection{Sampling biases and variances}
 
-Figure 3 compares the mean and standard deviation of three-way measures sampled against the analytical measures for the modulatory activation function. The mean and deviations were computed from 100 trials per sample size and compared with the analytical measure across a range of sample sizes. As the authors claim, sample size of 200 could be sufficient as the improvements beyond that are not much.
+Figure 3 compares the mean and standard deviation of three-way measures sampled against the analytical measures for the modulatory activation function. The mean and deviations were computed from 100 trials per sample size and compared with the analytical measure across a range of sample sizes. As the authors claim, sample size of 200 could be sufficient as the improvements beyond that are not much. The error for small sample sizes is higher in the original paper, this can be attributed to use of a different seed value and their programming language.
 
 
 \begin{figure}[H]
@@ -116,7 +116,7 @@ Figure 3 compares the mean and standard deviation of three-way measures sampled 
 
 The goal of the authors was to study contextual modulation in single binary neurons using information theory. To that end they present figures 1-2 as a way to compare and contrast functions with or without forms of contextual modulation. They use figure 3 to suggest how much data is required to get the required accuracy for the analyses presented in figures 1-2. \newline
 
-In order to be as a self-contained manuscript, one example of how the analyses here can be used to study contextual modulation is included as follows: For the modulatory activation function, it is intended that the role of R is to drive the neuron to fire and C is to amplify the firing. Figure 2 (b) shows that Increasing C alone does not increase I(X;C|R), but increasing R and C together does and a higher C with a constant R amplifies it. At low R values, C has a higher role in the output so I(X;C|R) begins to diminish at higher R values. This shows that the modulatory function is behaving as intended and expected. \newline
+In order to serve as a self-contained manuscript, one example of how the analyses here can be used to study contextual modulation is included as follows: For the modulatory activation function, it is intended that the role of R is to drive the neuron to fire and C is to amplify the firing. Figure 2 (b) shows that Increasing C alone does not increase I(X;C|R), but increasing R and C together does and a higher C with a constant R amplifies it. At low R values, C has a higher role in the output so I(X;C|R) begins to diminish at higher R values. This shows that the modulatory function is behaving as intended and expected. \newline
 
 In conclusion, this manuscript and the accompanying code present a successful replication of the authors' work in a modern programming language. Similarly, the code and information-theoretic analyses here could be used to study other activation functions and contextual modulation.
 
