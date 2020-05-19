@@ -192,14 +192,17 @@ if __name__ == '__main__':
                             'sd_I_X_C__R': np.zeros(samples_array.shape[0]),
                             'sd_I_X_R_C': np.zeros(samples_array.shape[0])}
 
+    # Iterating over different sample sizes
     for steps_idx, n_steps in enumerate(samples_array):
 
         temp_I_X_R__C = np.zeros(params.n_trials)
         temp_I_X_C__R = np.zeros(params.n_trials)
         temp_I_X_R_C = np.zeros(params.n_trials)
 
+        # Iterating over trials
         for trial_n in range(params.n_trials):
 
+            # generating r,c vectors based on probability distributions and x from the modulatory activation function.
             r_seq = np.zeros((1, n_steps), dtype=np.int)[0]
             c_seq = np.zeros((1, n_steps), dtype=np.int)[0]
             x_seq = np.zeros((1, n_steps), dtype=np.int)[0]
@@ -234,6 +237,7 @@ if __name__ == '__main__':
                 if p_fir > rn:
                     x_seq[i] = 1
 
+            # Calculating the probability distributions from the simulated data.
             n = r_seq.shape[0]
 
             R = {0: np.where(r_seq == -1)[0].shape[0]/n,
@@ -257,6 +261,7 @@ if __name__ == '__main__':
                 cs = np.where(c_seq == alp_c)
                 xs = x_seq[np.intersect1d(rs, cs)]
 
+                # P(R,C,X)
                 RCX[(r, c, 1)] = np.sum(xs == 1) / n
                 RCX[(r, c, 0)] = np.sum(xs == 0) / n
 
@@ -264,14 +269,14 @@ if __name__ == '__main__':
             RC = {(0, 0): 0.0, (0, 1): 0.0, (1, 0): 0.0, (1, 1): 0.0}
             for r, c in itertools.product(R, C):
                 RC[(r, c)] = RCX[(r, c, 1)] + RCX[(r, c, 0)]
-
+            # P(X)
             X = cal_X(R, C, RCX)
 
-            # P(R,C,X)
+            # P(X|R,C)
             X__R_C = {}
             for r, c, x in itertools.product(R, C, X):
                 X__R_C[(x, r, c)] = RCX[(r, c, x)] / (RC[(r, c)] + np.finfo(float).eps)
-
+            # P(X|R)
             X__R = cal_X__R(R, X, RCX)
             # P(X|C)
             X__C = cal_X__C(C, X, RCX)
