@@ -2,18 +2,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-def _plot_fig1_subplot(label, metric, number, X, results_zero_c, results_one_c):
+def _plot_fig1_subplot(label, metric, number, results_zero_c, results_one_c):
     """Plot a subplot for figure 1.
 
     :param label: string - label of subplot
     :param metric: string - information theoretic metric
     :param number: int - number of the subplot
-    :param X: array - magnitude of R for the x axis
     :param results_zero_c: structured array - contains results of the analysis for when c == 0
     :param results_one_c: structured array - contains results of the analysis for when c == 1
     :return:
     """
     ax = plt.subplot(3, 1, number)
+
+    X = np.unique(results_zero_c['r'])
 
     # Zero context - dashed
     Y = results_zero_c[np.where(np.logical_and(results_zero_c['activation_function'] == 'nocontext',
@@ -44,10 +45,9 @@ def _plot_fig1_subplot(label, metric, number, X, results_zero_c, results_one_c):
 
     return
 
-def plot_fig1(X, results):
+def plot_fig1(results):
     """Plot figure 1. Calls "_plot_fig1_subplot" for each subplot.
 
-    :param X: array - magnitude of R for the x axis
     :param results: structured array - contains results of the analysis
     :return: None
     """
@@ -57,13 +57,13 @@ def plot_fig1(X, results):
     results_one_c = results[np.where(np.isclose(results['c'], 1.0))]
 
     # I(X;R;C)
-    _plot_fig1_subplot('(a)', 'I_X_R_C', 1, X, results_zero_c, results_one_c)
+    _plot_fig1_subplot('(a)', 'I_X_R_C', 1, results_zero_c, results_one_c)
 
     # I(X;R|C)
-    _plot_fig1_subplot('(b)',  'I_X_R__C', 2, X, results_zero_c, results_one_c)
+    _plot_fig1_subplot('(b)',  'I_X_R__C', 2, results_zero_c, results_one_c)
 
     # I(X;C|R)
-    _plot_fig1_subplot('(c)',  'I_X_C__R', 3, X, results_zero_c, results_one_c)
+    _plot_fig1_subplot('(c)',  'I_X_C__R', 3, results_zero_c, results_one_c)
 
     plt.subplots_adjust(wspace=None, hspace=0.2)
     plt.show()
@@ -107,8 +107,6 @@ def _plot_fig2_subplot(label, metric, number, function, results):
 def plot_fig2(results):
     """Plot figure 2. Calls "_plot_fig2_subplot"
 
-    :param X: array - x axis (r values)
-    :param Y: array - y axis (c values)
     :param results: structured array - results of the analysis
     :return: None
     """

@@ -145,7 +145,7 @@ if __name__ == '__main__':
                             'both': both_X__R_C,
                             'nocontext': nocontext_X__R_C}
 
-        functions_RCX = {} # P(R,C,X)
+        functions_RCX = {}  # P(R,C,X)
         functions_X = {}  # P(X)
         functions_X__R = {}  # P(X|R)
         functions_X__C = {}  # P(X|C)
@@ -178,7 +178,7 @@ if __name__ == '__main__':
                analytical_results[idx] = (function, metric, rmag, cmag, value)
                idx += 1
 
-    plotting.plot_fig1(params.r_magnitudes, analytical_results)
+    plotting.plot_fig1(analytical_results)
     plotting.plot_fig2(analytical_results)
 
     # ******************************
