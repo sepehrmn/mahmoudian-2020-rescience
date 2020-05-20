@@ -20,7 +20,10 @@ def cal_R__C(R, C, RC):
 
     R__C = {}
     for c, r in itertools.product(C, R):
-        R__C[(r, c)] = RC[(r, c)] / (C[c] + np.finfo(float).eps)
+        if np.isclose(C[c], 0.0):
+            R__C[(r, c)] = 0.0
+        else:
+            R__C[(r, c)] = RC[(r, c)] / C[c]
     return R__C
 
 
@@ -29,7 +32,10 @@ def cal_C__R(R, C, RC):
 
     C__R = {}
     for r, c in itertools.product(R, C):
-            C__R[(c, r)] = RC[(r, c)] / (R[r] + np.finfo(float).eps)
+            if np.isclose(R[r], 0.0):
+                C__R[(c, r)] = 0.0
+            else:
+                C__R[(c, r)] = RC[(r, c)] / R[r]
     return C__R
 
 # P(X|R)
@@ -40,7 +46,10 @@ def cal_X__R(R, X, RCX):
 
     X__R = {}
     for x, r in itertools.product(X, R):
-        X__R[(x, r)] = XR[(x, r)] / (R[(r)] + np.finfo(float).eps)
+        if np.isclose(R[r], 0.0):
+            X__R[(x, r)] = 0.0
+        else:
+            X__R[(x, r)] = XR[(x, r)] / R[r]
 
     return X__R
 
@@ -53,7 +62,10 @@ def cal_X__C(C, X, RCX):
 
     X__C = {}
     for x, c in itertools.product(X, C):
-        X__C[(x, c)] = XC[(x, c)] / (C[c] + np.finfo(float).eps)
+        if np.isclose(C[c], 0.0):
+            X__C[(x, c)] = 0.0
+        else:
+            X__C[(x, c)] = XC[(x, c)] / C[c]
 
     return X__C
 
@@ -275,7 +287,10 @@ if __name__ == '__main__':
             # P(X|R,C)
             X__R_C = {}
             for r, c, x in itertools.product(R, C, X):
-                X__R_C[(x, r, c)] = RCX[(r, c, x)] / (RC[(r, c)] + np.finfo(float).eps)
+                if np.isclose(RC[(r, c)], 0.0):
+                    X__R_C[(x, r, c)] = 0.0
+                else:
+                    X__R_C[(x, r, c)] = RCX[(r, c, x)] / RC[(r, c)]
             # P(X|R)
             X__R = cal_X__R(R, X, RCX)
             # P(X|C)
