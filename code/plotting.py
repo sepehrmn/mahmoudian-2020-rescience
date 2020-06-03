@@ -35,7 +35,10 @@ def _plot_fig1_subplot(label, metric, number, results_zero_c, results_one_c):
     Y = results_one_c[np.where(np.logical_and(results_one_c['activation_function'] == 'both',
                                               results_one_c['information_metric'] == metric))]['value']
 
+    plt.yticks(np.arange(0, 0.6, step=0.1))
+
     if (number == 3):
+        plt.yticks(np.arange(0, 0.3, step=0.05))
         ax.set_xlabel('Magnitude of R', fontsize=19)
     ax.set_ylabel('Information bits', fontsize=18)
     ax.xaxis.set_tick_params(labelsize=14)
