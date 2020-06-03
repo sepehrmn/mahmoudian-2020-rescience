@@ -94,8 +94,6 @@ def _plot_fig2_subplot(label, metric, number, function, results):
     Y = matches['c'].reshape(101, 101)
     Z = matches['value'].reshape(101, 101)
 
-    #Z = Z.reshape(X.shape[0], Y.shape[0])
-    #X, Y = np.meshgrid(X, Y)
     ax.set_title(label, fontsize=19, fontweight='bold', y=0.1, x=0.1)
     ax.plot_wireframe(X, Y, Z, color="grey")
     ax.view_init(45, 300)
