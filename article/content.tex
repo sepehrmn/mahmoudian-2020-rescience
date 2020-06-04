@@ -49,7 +49,7 @@ A_b(r,c) = 0.5r[1 + e^{rc}] + c
 \end{equation}
 
 
-The output of each activation function is passed into the sigmoidal activation function to generate a probability of firing:
+Where r is an instance of  R, and c an instance of C, multiplied by the weight of the connection. The output of each activation function is passed into the sigmoidal activation function to generate a probability of firing:
 
 \begin{equation}
 p(X=1 | r,c) = \frac{1}{1 + e^{-A(r,c)}} 
@@ -83,7 +83,7 @@ I(X;C|R) = \sum_{x,r,c}P(x,r,c)log\frac{P(x|r,c)}{P(x|r)}
 
 \subsubsection{Activation functions and transmitted information}
 
-Figure 1 shows the three-way mutual information and conditional mutual information terms for each of the activation functions and across a range of R input weights while C remains constant at 1. These results are produced in a similar way to the paper by using the exact probability distributions. They are qualitatively identical to the original paper. There are minor quantitative differences. For example, in (c) the maximum value of the $A_b$ function is higher in the original paper. Since the exact tick sizes for the x axis is not written in the original paper, here step size of 0.1 was used for each data point which leads to a higher number of data points but rules out missing the higher maximum value due to not having that particular data point. 
+Figure 1 shows the three-way mutual information and conditional mutual information terms for each of the activation functions and across a range of R input weights while C remains constant at 1. These results are produced in a similar way to the paper by using the exact probability distributions. They are qualitatively identical to the original paper. There are minor quantitative differences. For example, in (c) the maximum value of the $A_b$ function is higher in the original paper.  In order to rule out the possibility of missing the higher maximum value due to not having that particular data point, a step size of 0.1 was used for each data point which leads to a higher number of data points on this figure than the original publication's. 
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{figure_1.png}
@@ -92,7 +92,7 @@ Figure 1 shows the three-way mutual information and conditional mutual informati
 
 \subsubsection{Information surface plots for different input weights}
 
-Figure 2 shows the I(X;C|R) for each of the activation functions and across a range of r and c input weights. These results are produced in a similar way to the paper by using the exact probability distributions. They are qualitatively identical to the original paper. There are no notable quantitative differences and the values look very similar. 
+Figure 2 shows the I(X;C|R) for each of the activation functions and across a range of r and c input weights. These results are produced in a similar way to the paper by using the exact probability distributions. They are qualitatively identical to the original paper. There are no notable quantitative differences. 
 
 
 \begin{figure}[H]
@@ -104,7 +104,7 @@ Figure 2 shows the I(X;C|R) for each of the activation functions and across a ra
 
 \subsubsection{Sampling biases and variances}
 
-Figure 3 compares the mean and standard deviation of three-way measures sampled against the analytical measures for the modulatory activation function. The mean and deviations were computed from 100 trials per sample size and compared with the analytical measure across a range of sample sizes. As the authors claim, sample size of 200 could be sufficient as the improvements beyond that are not much. The error for small sample sizes is higher in the original paper, this can be attributed to use of a different seed value and their programming language.
+Figure 3 compares the mean and standard deviation of three-way measures sampled against the analytical measures for the modulatory activation function. The mean and deviations were computed from 100 trials per sample size and compared with the analytical measure across a range of sample sizes. As the authors claim, sample size of 200 could be sufficient as the improvements beyond that are not much. The error for small sample sizes is higher in the original paper, this can be attributed to use of a different seed value and their programming environment.
 
 
 \begin{figure}[H]
@@ -116,7 +116,7 @@ Figure 3 compares the mean and standard deviation of three-way measures sampled 
 
 The goal of the authors was to study contextual modulation in single binary neurons using information theory. To that end they present figures 1-2 as a way to compare and contrast functions with or without forms of contextual modulation. They use figure 3 to suggest how much data is required to get the required accuracy for the analyses presented in figures 1-2. \newline
 
-In order to serve as a self-contained manuscript, one example of how the analyses here can be used to study contextual modulation is included as follows: For the modulatory activation function, it is intended that the role of R is to drive the neuron to fire and C is to amplify the firing. Figure 2 (b) shows that Increasing C alone does not increase I(X;C|R), but increasing R and C together does and a higher C with a constant R amplifies it. At low R values, C has a higher role in the output so I(X;C|R) begins to diminish at higher R values. This shows that the modulatory function is behaving as intended and expected. \newline
+One example of how the analyses here can be used to study contextual modulation is included as follows: For the modulatory activation function, it is intended that the role of R is to drive the neuron to fire and C is to amplify the firing. Figure 2 (b) shows that increasing C alone does not increase I(X;C|R), but increasing R and C together does and a higher C with a constant R amplifies it. At low R values, C has a higher role in the output so I(X;C|R) begins to diminish at higher R values. This shows that the modulatory function is behaving as intended and expected. \newline
 
 In conclusion, this manuscript and the accompanying code present a successful replication of the authors' work in a modern programming language. Similarly, the code and information-theoretic analyses here could be used to study other activation functions and contextual modulation.
 
