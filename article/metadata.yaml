@@ -56,7 +56,7 @@ abstract: "The input to a neuron can be categorized as driving or contextual.
            information theory can be used to study the different forms
            of information transmission. Here the original article on using three-way
            mutual and conditional mutual information to study contextual amplification
-           is reproduced and the Python code is made public."
+           is replicated and the Python code is made public."
 
 # Bibliography file (yours)
 bibliography: bibliography.bib
@@ -81,23 +81,26 @@ language: Python
 
 # For example, the URL of the GitHub issue where review actually occured
 review: 
-  - url: 
+  - url: https://github.com/ReScience/submissions/issues/29
 
 contributors:
-  - name:
-    orcid: 
+  - name: Olivia Guest
+    orcid: 0000-0002-1891-0972
     role: editor
-  - name:
-    orcid:
+  - name: Reubs Walsh
+    orcid: 0000-0002-5592-7562
     role: reviewer
-  - name:
-    orcid:
+  - name: Daniel Schmid
+    orcid: 0000-0002-2439-9453
+    role: reviewer
+  - name: Abdullah Makkeh
+    orcid: 0000-0002-3581-8262
     role: reviewer
 
 # This information will be provided by the editor
 dates:
   - received:  April 18, 2020
-  - accepted:
+  - accepted:  June 5, 2020
   - published: 
 
 # This information will be provided by the editor
