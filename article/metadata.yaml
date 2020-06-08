@@ -38,7 +38,7 @@ keywords: information theory, contextual amplification, python
 code:
   - url: https://github.com/rescience-c/template
   - doi:
-  - swh: swh:1:dir:c707f7af830f2cf32cf42c9515cc95ffd5fc5e2c;
+  - swh: swh:1:dir:c707f7af830f2cf32cf42c9515cc95ffd5fc5e2c
 
 # Date URL and DOI (optional if no data)
 data:
