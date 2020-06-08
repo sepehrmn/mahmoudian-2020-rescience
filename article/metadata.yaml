@@ -22,7 +22,7 @@ affiliations:
   - code:    1
     name:    Department of Data-driven Analysis of Biological Networks, Campus Institute for Dynamics of Biological Networks, Georg August University Göttingen
     address: Göttingen, Germany
-    
+
   - code:    2
     name:    MEG Unit, Brain Imaging Center, Goethe University Frankfurt
     address: Frankfurt, Germany
@@ -37,7 +37,7 @@ keywords: information theory, contextual amplification, python
 #   see https://guides.github.com/activities/citable-code/
 code:
   - url: https://github.com/rescience-c/template
-  - doi: 
+  - doi:
   - swh: swh:1:dir:c707f7af830f2cf32cf42c9515cc95ffd5fc5e2c;
 
 # Date URL and DOI (optional if no data)
@@ -53,8 +53,8 @@ replication:
  - doi:  10.1088/0954-898X/7/2/011 # Regular digital object identifier
 
 # Don't forget to surround abstract with double quotes
-abstract: "The input to a neuron can be categorized as driving or contextual. 
-           There are many ways to write formulations for contextual amplification. 
+abstract: "The input to a neuron can be categorized as driving or contextual.
+           There are many ways to write formulations for contextual amplification.
            information theory can be used to study the different forms
            of information transmission. Here the original article on using three-way
            mutual and conditional mutual information to study contextual amplification
@@ -62,7 +62,7 @@ abstract: "The input to a neuron can be categorized as driving or contextual.
 
 # Bibliography file (yours)
 bibliography: bibliography.bib
-  
+
 # Type of the article
 # Type can be:
 #  * Editorial
@@ -77,12 +77,12 @@ domain: Computational Neuroscience
 # Coding language (main one only if several)
 language: Python
 
-  
+
 # To be filled by the author(s) after acceptance
 # -----------------------------------------------------------------------------
 
 # For example, the URL of the GitHub issue where review actually occured
-review: 
+review:
   - url: https://github.com/ReScience/submissions/issues/29
 
 contributors:
@@ -103,17 +103,17 @@ contributors:
 dates:
   - received:  April 18, 2020
   - accepted:  June 5, 2020
-  - published: 
+  - published:
 
 # This information will be provided by the editor
 article:
-  - number: # Article number will be automatically assigned during publication
-  - doi:    # DOI from Zenodo
-  - url:    # Final PDF URL (Zenodo or rescience website?)
+  - number: 2 # Article number will be automatically assigned during publication
+  - doi: 10.5281/zenodo.3885793   # DOI from Zenodo
+  - url: https://zenodo.org/record/3885793/files/Reproduction_of_Smyth_et_al__1996.pdf  # Final PDF URL (Zenodo or rescience website?)
 
 # This information will be provided by the editor
 journal:
   - name:   "ReScience C"
   - issn:   2430-3658
-  - volume: 4
-  - issue:  1
+  - volume: 6
+  - issue:  3
