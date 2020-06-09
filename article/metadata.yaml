@@ -13,7 +13,7 @@ authors:
   - name: Sepehr Mahmoudian
     orcid: 0000-0003-0884-9343
     email: sepehr.mahmoudian@gmail.com
-    affiliations: 1,2, *
+    affiliations: 1,2,*
 
 # List of affiliations with code (corresponding to author affiliations), name
 # and address. You can also use these affiliations to add text such as "Equal
@@ -36,7 +36,7 @@ keywords: information theory, contextual amplification, python
 # Software Heritage.
 #   see https://guides.github.com/activities/citable-code/
 code:
-  - url: https://github.com/rescience-c/template
+  - url: https://github.com/sepehrmn/mahmoudian-2020-rescience
   - doi:
   - swh: swh:1:dir:c707f7af830f2cf32cf42c9515cc95ffd5fc5e2c
 
@@ -48,7 +48,7 @@ data:
 # Information about the original article that has been replicated
 replication:
  - cite: Smyth, D., Phillips, W. A. and Kay, J.(1996)'Measures for investigating the contextual modulation of information transmission',Network:Computation in Neural Systems,7:2,307 — 316 # Full textual citation
- - bib:  # Bibtex key (if any) in your bibliography file
+ - bib:  Smyth1996 # Bibtex key (if any) in your bibliography file
  - url:  https://www.tandfonline.com/doi/abs/10.1088/0954-898X_7_2_011 # URL to the PDF, try to link to a non-paywall version
  - doi:  10.1088/0954-898X/7/2/011 # Regular digital object identifier
 
